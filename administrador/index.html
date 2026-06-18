@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+    rel="stylesheet">
+  <script src="https://kit.fontawesome.com/546bb97bde.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="js/main.js" defer type="module"></script>
+  <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
+  <title>Honker Burguer</title>
+</head>
+
+<body>
+  <div id="containerLogin" class="containerLogin">
+
+    <div id="logoContainer" class="logoContainer">
+      <img id="logoSvg" src="" alt="">
+
+      <img id="logoEstatica" class="logo" src="./img/logo.png" alt="">
+    </div>
+
+    <div id="elementosLogin" class="loginEscondido">
+      <h1>Seja bem Vindo</h1>
+
+      <div class="inputContainer">
+        <div class="input">
+          <label for="">Usuário:</label>
+          <input id="emailUser" type="email" placeholder="Digite seu Email">
+        </div>
+      </div>
+
+      <div class="inputContainer">
+        <div class="input">
+          <label for="">Senha:</label>
+          <input id="senhaUser" type="password" placeholder="Digite sua senha">
+        </div>
+      </div>
+
+      <button id="btnLogin" class="botaoLogar">Logar</button>
+      <footer>
+        <p>Versão 1.0.0</p>
+      </footer>
+    </div>
+  </div>
+
+  <header class="containerHeader container">
+    <div class="headerInfos">
+      <p id="dataLogin" class="loginData"></p>
+      <p id="userName" class="loginUsuario"></p>
+      <p class="honkerTitle">Honker Burguer</p>
+    </div>
+
+    <p id="dataHora" class="dataHora"></p>
+  </header>
+
+  <div class="containerBotoes">
+    <button><i class="fa-solid fa-ellipsis-vertical"></i> Informações</button>
+    <button class="vermelho"> <i class="fa-solid fa-power-off"></i> Deslogar</button>
+  </div>
+
+
+  <div class="containerConteudo">
+    <div class="HeadercabecalhoPrincipal">
+      <div class="botoesOpcoes" id="menu-opcoes">
+      </div>
+      <header class="containerCategorias containerCinza">
+      </header>
+    </div>
+
+    <section class="containerPrincipal container" id="tela-principal">
+
+    </section>
+  </div>
+
+</body>
+
+</html>
