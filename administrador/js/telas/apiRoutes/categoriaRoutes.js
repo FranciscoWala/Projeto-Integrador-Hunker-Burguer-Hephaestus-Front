@@ -1,6 +1,6 @@
 
 export async function getAllCategorias() {
-    let url = "url";
+    let url = "/v1/hephaestus/honkerburguer/categoria/";
 
     try {
         let response = await fetch(url);
@@ -10,8 +10,8 @@ export async function getAllCategorias() {
             for (let item of respostaAPI) {
                 categorias.push({
                     id: item.id,
-                    nome: item.nome,
-                    foto: item.foto
+                    nome: item.response.nome,
+                    foto: item.response.foto
                 });
             }
             return categorias;
@@ -34,7 +34,7 @@ function getJsonFalhaCategorias() {
 }
 
 export async function getCategoriaById(id) {
-    let url = `url/${id}`;
+    let url = `/v1/hephaestus/honkerburguer/categoria/${id}`;
 
     try {
         let response = await fetch(url);
@@ -64,7 +64,7 @@ function getJsonFalhaCategoriaUnica(id) {
 }
 
 export async function insertCategoria(categoria) {
-    let url = "url";
+    let url = "/v1/hephaestus/honkerburguer/categoria/";
     try {
         let response = await fetch(url, {
             method: 'POST',
@@ -82,7 +82,7 @@ export async function insertCategoria(categoria) {
 }
 
 export async function updateCategoria(categoria) {
-    let url = `url/${categoria.id}`;
+    let url = `/v1/hephaestus/honkerburguer/categoria/${categoria.id}`;
     try {
         let response = await fetch(url, {
             method: 'PUT',
@@ -100,7 +100,7 @@ export async function updateCategoria(categoria) {
 }
 
 export async function deleteCategoria(id) {
-    let url = `url/${id}`;
+    let url = `/v1/hephaestus/honkerburguer/categoria/${id}`;
     try {
         let response = await fetch(url, {
             method: 'DELETE'
