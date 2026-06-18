@@ -1,0 +1,258 @@
+/* CONFIGURAÇÕES INICIAIS */
+
+:root {
+    --corTexto: #424240;
+    --corBordaInput: #84BED6;
+    --sombraInternaInput: inset 0px -18px 10px 0px rgba(0, 0, 0, 0.13);
+    --sombraInternaAzul: inset 0px -18px 10px 0px rgba(0, 0, 0, 0.15), 0px 0px 20.6px 11px #acdaef50;
+
+    --sombraBotao: 0px 4px 6px rgba(0, 0, 0, 0.05);
+    --sombraBotaoAtivo: 0px 0px 15px 5px #acdaef50;
+    --bordaBotaoVermelho: #D68484;
+    --sombraBotaoAtivoVermelho: 0px 0px 15px 5px var(--bordaBotaoVermelho);
+
+    --sombrasContainer: 0px 4px 20.6px rgba(0, 0, 0, 0.25), inset 0px -18px 46.8px rgba(0, 0, 0, 0.15);
+    --fundoContainer: #D9DCE8;
+    --containerCardBorda: #707070;
+    --fundoCardContainer: #F0F0F0;
+
+    --fundoContainerCinza: #DADBD6;
+    --enfeiteContainerCinza: #cdcec7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    color: var(--corTexto);
+    font-weight: bolder;
+    letter-spacing: 0.5px;
+    background-image: url('../img/background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    user-select: none;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 8px 12px;
+    font-family: inherit;
+    font-size: 1rem;
+    color: inherit;
+    background-color: #FFFFFF;
+    border: 2px solid var(--corBordaInput);
+    border-radius: 5px;
+    outline: none;
+    box-shadow: var(--sombraInternaInput);
+    transition: 0.3s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+select {
+    box-shadow: var(--sombraInternaAzul);
+}
+
+button {
+    padding: 10px 50px;
+    font-family: inherit;
+    font-size: 1.2rem;
+    color: inherit;
+    background: linear-gradient(to bottom, #FFFFFF 50%, #E8EEF3 50%);
+    border: 2px solid var(--corBordaInput);
+    border-radius: 50px;
+    outline: none;
+    cursor: pointer;
+    box-shadow: var(--sombraBotao);
+    transition: 0.2s ease-in-out;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.vermelho {
+    border: 2px solid var(--bordaBotaoVermelho);
+    box-shadow: var(--sombraBotao);
+}
+
+.container {
+    width: fit-content;
+    border: 2px solid var(--containerCardBorda);
+    border-radius: 35px;
+    background-color: var(--fundoContainer);
+    box-shadow: var(--sombrasContainer);
+    padding: 20px;
+}
+
+.containerCard {
+    width: fit-content;
+    padding: 20px;
+    background-color: var(--containerCardBorda);
+    filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.25));
+
+    --r: 30%; 
+    --_r: clamp(0%, var(--r)/2, 25%);
+    --_v: calc(var(--_r)*(1 - sqrt(2)/4));
+    --_p: calc(var(--_v) - var(--_r)/2);
+    clip-path: shape(from var(--_v) var(--_p),
+            curve to 50% 0 with var(--_r) 0,
+            curve to calc(100% - var(--_v)) var(--_p) with calc(100% - var(--_r)) 0,
+            curve to calc(100% - var(--_p)) var(--_v) with calc(100% - 2*var(--_p)) calc(2*var(--_p)),
+            curve to 100% 50% with 100% var(--_r),
+            curve to calc(100% - var(--_p)) calc(100% - var(--_v)) with 100% calc(100% - var(--_r)),
+            curve to calc(100% - var(--_v)) calc(100% - var(--_p)) with calc(100% - 2*var(--_p)) calc(100% - 2*var(--_p)),
+            curve to 50% 100% with calc(100% - var(--_r)) 100%,
+            curve to var(--_v) calc(100% - var(--_p)) with var(--_r) 100%,
+            curve to var(--_p) calc(100% - var(--_v)) with calc(2*var(--_p)) calc(100% - 2*var(--_p)),
+            curve to 0 50% with 0 calc(100% - var(--_r)),
+            curve to var(--_p) var(--_v) with 0 var(--_r),
+            curve to var(--_v) var(--_p) with calc(2*var(--_p)) calc(2*var(--_p)));
+}
+
+.containerCard::before {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    z-index: -1;
+    background-color: var(--fundoCardContainer);
+
+    --r: 30%; 
+    --_r: clamp(0%, var(--r)/2, 25%);
+    --_v: calc(var(--_r)*(1 - sqrt(2)/4));
+    --_p: calc(var(--_v) - var(--_r)/2);
+    clip-path: shape(from var(--_v) var(--_p),
+            curve to 50% 0 with var(--_r) 0,
+            curve to calc(100% - var(--_v)) var(--_p) with calc(100% - var(--_r)) 0,
+            curve to calc(100% - var(--_p)) var(--_v) with calc(100% - 2*var(--_p)) calc(2*var(--_p)),
+            curve to 100% 50% with 100% var(--_r),
+            curve to calc(100% - var(--_p)) calc(100% - var(--_v)) with 100% calc(100% - var(--_r)),
+            curve to calc(100% - var(--_v)) calc(100% - var(--_p)) with calc(100% - 2*var(--_p)) calc(100% - 2*var(--_p)),
+            curve to 50% 100% with calc(100% - var(--_r)) 100%,
+            curve to var(--_v) calc(100% - var(--_p)) with var(--_r) 100%,
+            curve to var(--_p) calc(100% - var(--_v)) with calc(2*var(--_p)) calc(100% - 2*var(--_p)),
+            curve to 0 50% with 0 calc(100% - var(--_r)),
+            curve to var(--_p) var(--_v) with 0 var(--_r),
+            curve to var(--_v) var(--_p) with calc(2*var(--_p)) calc(2*var(--_p)));
+}
+
+.containerCinza {
+    width: fit-content;
+    background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='10' height='15' patternTransform='scale(1) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='%23dadbd6ff'/><path d='M0 10h20z'   stroke-width='7.5' stroke='%23cdcec7ff' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>");
+    box-shadow: var(--sombrasContainer);
+    border: 2px solid var(--containerCardBorda);
+    border-radius: 35px;
+    padding: 20px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20%,
+    60% {
+        transform: translateX(-5px);
+    }
+
+    40%,
+    80% {
+        transform: translateX(5px);
+    }
+}
+
+.containerMensagem {
+    position: absolute;
+    width: fit-content;
+    right: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 99999;
+}
+
+.mensagem {
+    padding-top: 15px;
+    border-radius: 20px;
+    width: 300px;
+    position: relative;
+    top: 30px;
+    right: 30px;
+    border: 2px solid var(--corBordaInput);
+    background-color: rgb(247, 247, 247);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.mensagem.sair {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+.mensagem.shake {
+    animation: shake 0.4s ease-in-out forwards;
+}
+
+.infosMensagem {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.infosMensagem i {
+    font-size: 30px;
+    color: var(--corBordaInput);
+}
+
+.mensagem.vermelho {
+    border: 2px solid var(--bordaBotaoVermelho);
+}
+
+.mensagem.vermelho .infosMensagem i {
+    font-size: 30px;
+    color: var(--bordaBotaoVermelho);
+}
