@@ -1,5 +1,5 @@
 export async function getAllcategorias() {
-    let url = "url";
+    let url = "/v1/hephaestus/honkerburguer/hamburguer";
 
     try {
         let response = await fetch(url);
@@ -34,7 +34,7 @@ function getJsonFalhaCategorias() {
 }
 
 export async function getAllHamburguers() {
-    let url = "url";
+    let url = "/v1/hephaestus/honkerburguer/hamburguer";
 
     try {
         let response = await fetch(url);
@@ -93,7 +93,7 @@ function getJsonFalhaHamburgueres() {
 }
 
 export async function getHamburguerById(id) {
-    let url = `url/${id}`;
+    let url = `/v1/hephaestus/honkerburguer/hamburguer/${id}`;
 
     try {
         let response = await fetch(url);
@@ -136,7 +136,7 @@ function getJsonFalhaHamburguerUnico(id) {
 }
 
 export async function insertHamburguer(dadosHamburguer) {
-    let url = "url";
+    let url = "/v1/hephaestus/honkerburguer/hamburguer";
 
     try {
         let response = await fetch(url, {
@@ -160,7 +160,7 @@ export async function insertHamburguer(dadosHamburguer) {
 }
 
 export async function getAllIngredientes() {
-    let url = "url";
+    let url = "/v1/hephaestus/honkerburguer/hamburguer";
 
     try {
         let response = await fetch(url);
@@ -200,7 +200,7 @@ function getJsonFalhaIngredientes() {
 }
 
 export async function updateHamburguer(hamburguer) {
-    let url = `url/${hamburguer.id}`;
+    let url = `/v1/hephaestus/honkerburguer/hamburguer/${hamburguer.id}`;
 
     try {
         let response = await fetch(url, {
@@ -224,7 +224,7 @@ export async function updateHamburguer(hamburguer) {
 }
 
 export async function deleteHamburguer(id) {
-    let url = `url/${id}`;
+    let url = `/v1/hephaestus/honkerburguer/hamburguer/${id}`;
 
     try {
         let response = await fetch(url, {

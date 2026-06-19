@@ -1,5 +1,5 @@
 export async function getAllIngredientes() {
-    let url = "url";
+    let url = "/v1/hephaestus/honkerburguer/ingrediente";
     try {
         let response = await fetch(url);
         if (response.ok) {
@@ -34,7 +34,7 @@ function getJsonFalhaIngredientes() {
 }
 
 export async function getIngredienteById(id) {
-    let url = `url/${id}`;
+    let url = `/v1/hephaestus/honkerburguer/ingrediente/${id}`;
     try {
         let response = await fetch(url);
         if (response.ok) {
@@ -65,7 +65,7 @@ function getJsonFalhaIngredienteUnico(id) {
 }
 
 export async function insertIngrediente(ingrediente) {
-    let url = "url";
+    let url = "/v1/hephaestus/honkerburguer/ingrediente";
     try {
         let response = await fetch(url, {
             method: 'POST',
@@ -83,7 +83,7 @@ export async function insertIngrediente(ingrediente) {
 }
 
 export async function updateIngrediente(ingrediente) {
-    let url = `url/${ingrediente.id}`;
+    let url = `/v1/hephaestus/honkerburguer/ingrediente/${ingrediente.id}`;
     try {
         let response = await fetch(url, {
             method: 'PUT',
@@ -101,7 +101,7 @@ export async function updateIngrediente(ingrediente) {
 }
 
 export async function deleteIngrediente(id) {
-    let url = `url/${id}`;
+    let url = `/v1/hephaestus/honkerburguer/ingrediente/${id}`;
     try {
         let response = await fetch(url, {
             method: 'DELETE'
