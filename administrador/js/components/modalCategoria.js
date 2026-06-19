@@ -132,7 +132,7 @@ export async function criarModalCategoria() {
         }
 
         const jsonFinal = {
-            nome: nomeDigitado,
+            categoria: nomeDigitado,
             foto: urlDaFoto
         };
 
