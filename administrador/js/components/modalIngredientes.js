@@ -1,9 +1,9 @@
-
 import { criarEl } from '../utils/dom.js';
 import { insertIngrediente, updateIngrediente, deleteIngrediente } from '../telas/apiRoutes/ingredienteRoutes.js'; 
 import { uploadParaCloudinary } from '../utils/cloudnary.js';
+import { mostrar } from '../utils/interface.js';
 
-export async function criarModalIngrediente() {
+export async function criarModalIngrediente(onUpdateCallback) {
     const modal = criarEl('div', 'janela container');
     modal.id = 'modalIngrediente';
     modal.style.display = 'none';
@@ -104,10 +104,14 @@ export async function criarModalIngrediente() {
                 let sucesso = await deleteIngrediente(idAtual);
 
                 if (sucesso === true) {
-                    alert("excluido");
+                    mostrar.mensagem("Excluído com sucesso!", "fa-solid fa-check");
                     modal.style.display = 'none';
+
+                    if (onUpdateCallback) {
+                        await onUpdateCallback();
+                    }
                 } else {
-                    alert("erro ao excluir do banco de dados");
+                    mostrar.mensagem("Erro ao excluir do banco de dados.", "fa-solid fa-database", "erro");
                 }
 
                 btnExcluir.textContent = "Excluir";
@@ -125,18 +129,18 @@ export async function criarModalIngrediente() {
         }
 
         if (nomeDigitado === "") {
-            alert("nome não pode ser vazio");
+            mostrar.mensagem("O nome não pode ser vazio.", "fa-solid fa-triangle-exclamation", "erro");
             return;
         }
 
         if (precoDigitado <= 0) {
-            alert("numero deve ser maior que 0");
+            mostrar.mensagem("O preço deve ser maior que 0.", "fa-solid fa-circle-exclamation", "erro");
             return;
         }
 
         if (idAtual === 0) {
             if (arquivoSelecionado === null) {
-                alert("escolha uma foto");
+                mostrar.mensagem("Escolha uma foto.", "fa-regular fa-image", "erro");
                 return;
             }
         }
@@ -150,7 +154,7 @@ export async function criarModalIngrediente() {
             if (urlCloudinary) {
                 urlDaFoto = urlCloudinary;
             } else {
-                alert("falha ao upar imagem");
+                mostrar.mensagem("Falha ao fazer upload da imagem.", "fa-solid fa-cloud-arrow-up", "erro");
             }
         }
 
@@ -175,10 +179,14 @@ export async function criarModalIngrediente() {
         }
 
         if (sucesso) {
-            alert('salvo com sucesso');
+            mostrar.mensagem("Salvo com sucesso!", "fa-solid fa-check");
             modal.style.display = 'none';
+
+            if (onUpdateCallback) {
+                await onUpdateCallback();
+            }
         } else {
-            alert('erro ao salvar no banco de dados');
+            mostrar.mensagem("Erro ao salvar no banco de dados.", "fa-solid fa-database", "erro");
         }
 
         btnSalvar.textContent = "Salvar";

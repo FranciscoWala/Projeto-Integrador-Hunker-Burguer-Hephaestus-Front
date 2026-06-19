@@ -1,0 +1,510 @@
+:root {
+    --rosaBase: #F7D3DD;
+    --corTexto: #FFB4C4;
+    --roxo: #661F6A;
+    --containerCor: #C971BF;
+    --bordaTexto: 3px 0 #661F6A, -3px 0 #661F6A, 0 3px #661F6A, 0 -3px #661F6A, 2px 2px #661F6A, -2px -2px #661F6A, -2px 2px #661F6A, 2px -2px #661F6A;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    list-style: none;
+    font-family: comic sans ms;
+    text-decoration: none;
+    color: var(--corTexto);
+}
+
+body {
+    background-color: var(--rosaBase);
+    height: 100vh;
+}
+
+header img {
+    width: 100%;
+    height: 25vh;
+    position: absolute;
+}
+
+.containerCarrossel {
+    background-image: url('../img/background.png');
+    height: 100vh;
+}
+
+.headerConteudo img {
+    width: 22vh;
+    height: 17vh;
+    transform: rotate(-20deg);
+    margin-top: 3vh;
+    margin-left: 3vh;
+}
+
+.headerOpcoes {
+    position: absolute;
+    z-index: 9999;
+    display: flex;
+    gap: 2vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 12vh;
+    font-size: 1.6rem;
+    text-shadow: var(--bordaTexto);
+}
+
+.carrosselItem {
+    color: var(--corTexto);
+    text-shadow: var(--bordaTexto);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.carrosselItem img {
+    width: 40vh;
+}
+
+.containerCarrossel {
+    height: 100vh;
+    padding-top: 20vh;
+    display: flex;
+    justify-content: center;
+}
+
+.textoCarrossel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.containerCarrossel h1 {
+    font-size: 2.5rem;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30vh;
+    cursor: pointer;
+}
+
+.button img {
+    width: 100%;
+}
+
+.button h1 {
+    font-size: 1.8rem;
+    position: absolute;
+}
+
+.containerBotoes {
+    display: flex;
+    gap: 20vh;
+}
+
+.botaoCarrossel {
+    width: 7vh;
+}
+
+#btnCarrosselDireito {
+    transform: scaleX(-1);
+}
+
+#btnCarrosselDireito,
+#btnCarrosselEsquerdo {
+    cursor: pointer;
+}
+
+.containerCard {
+    width: fit-content;
+    background-color: var(--roxo);
+    filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.25));
+
+    --r: 30%;
+    --_r: clamp(0%, var(--r)/2, 25%);
+    --_v: calc(var(--_r)*(1 - sqrt(2)/4));
+    --_p: calc(var(--_v) - var(--_r)/2);
+    clip-path: shape(from var(--_v) var(--_p),
+            curve to 50% 0 with var(--_r) 0,
+            curve to calc(100% - var(--_v)) var(--_p) with calc(100% - var(--_r)) 0,
+            curve to calc(100% - var(--_p)) var(--_v) with calc(100% - 2*var(--_p)) calc(2*var(--_p)),
+            curve to 100% 50% with 100% var(--_r),
+            curve to calc(100% - var(--_p)) calc(100% - var(--_v)) with 100% calc(100% - var(--_r)),
+            curve to calc(100% - var(--_v)) calc(100% - var(--_p)) with calc(100% - 2*var(--_p)) calc(100% - 2*var(--_p)),
+            curve to 50% 100% with calc(100% - var(--_r)) 100%,
+            curve to var(--_v) calc(100% - var(--_p)) with var(--_r) 100%,
+            curve to var(--_p) calc(100% - var(--_v)) with calc(2*var(--_p)) calc(100% - 2*var(--_p)),
+            curve to 0 50% with 0 calc(100% - var(--_r)),
+            curve to var(--_p) var(--_v) with 0 var(--_r),
+            curve to var(--_v) var(--_p) with calc(2*var(--_p)) calc(2*var(--_p)));
+}
+
+.containerCard::before {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    z-index: -1;
+    background-color: var(--containerCor);
+
+    --r: 30%;
+    --_r: clamp(0%, var(--r)/2, 25%);
+    --_v: calc(var(--_r)*(1 - sqrt(2)/4));
+    --_p: calc(var(--_v) - var(--_r)/2);
+    clip-path: shape(from var(--_v) var(--_p),
+            curve to 50% 0 with var(--_r) 0,
+            curve to calc(100% - var(--_v)) var(--_p) with calc(100% - var(--_r)) 0,
+            curve to calc(100% - var(--_p)) var(--_v) with calc(100% - 2*var(--_p)) calc(2*var(--_p)),
+            curve to 100% 50% with 100% var(--_r),
+            curve to calc(100% - var(--_p)) calc(100% - var(--_v)) with 100% calc(100% - var(--_r)),
+            curve to calc(100% - var(--_v)) calc(100% - var(--_p)) with calc(100% - 2*var(--_p)) calc(100% - 2*var(--_p)),
+            curve to 50% 100% with calc(100% - var(--_r)) 100%,
+            curve to var(--_v) calc(100% - var(--_p)) with var(--_r) 100%,
+            curve to var(--_p) calc(100% - var(--_v)) with calc(2*var(--_p)) calc(100% - 2*var(--_p)),
+            curve to 0 50% with 0 calc(100% - var(--_r)),
+            curve to var(--_p) var(--_v) with 0 var(--_r),
+            curve to var(--_v) var(--_p) with calc(2*var(--_p)) calc(2*var(--_p)));
+}
+
+.containerCardClaro {
+    width: fit-content;
+    background-color: #6B5E61;
+    filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.25));
+
+    --r: 30%;
+    --_r: clamp(0%, var(--r)/2, 25%);
+    --_v: calc(var(--_r)*(1 - sqrt(2)/4));
+    --_p: calc(var(--_v) - var(--_r)/2);
+    clip-path: shape(from var(--_v) var(--_p),
+            curve to 50% 0 with var(--_r) 0,
+            curve to calc(100% - var(--_v)) var(--_p) with calc(100% - var(--_r)) 0,
+            curve to calc(100% - var(--_p)) var(--_v) with calc(100% - 2*var(--_p)) calc(2*var(--_p)),
+            curve to 100% 50% with 100% var(--_r),
+            curve to calc(100% - var(--_p)) calc(100% - var(--_v)) with 100% calc(100% - var(--_r)),
+            curve to calc(100% - var(--_v)) calc(100% - var(--_p)) with calc(100% - 2*var(--_p)) calc(100% - 2*var(--_p)),
+            curve to 50% 100% with calc(100% - var(--_r)) 100%,
+            curve to var(--_v) calc(100% - var(--_p)) with var(--_r) 100%,
+            curve to var(--_p) calc(100% - var(--_v)) with calc(2*var(--_p)) calc(100% - 2*var(--_p)),
+            curve to 0 50% with 0 calc(100% - var(--_r)),
+            curve to var(--_p) var(--_v) with 0 var(--_r),
+            curve to var(--_v) var(--_p) with calc(2*var(--_p)) calc(2*var(--_p)));
+}
+
+.containerCardClaro::before {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    z-index: -1;
+    background-color: #F7D3DD;
+
+    --r: 30%;
+    --_r: clamp(0%, var(--r)/2, 25%);
+    --_v: calc(var(--_r)*(1 - sqrt(2)/4));
+    --_p: calc(var(--_v) - var(--_r)/2);
+    clip-path: shape(from var(--_v) var(--_p),
+            curve to 50% 0 with var(--_r) 0,
+            curve to calc(100% - var(--_v)) var(--_p) with calc(100% - var(--_r)) 0,
+            curve to calc(100% - var(--_p)) var(--_v) with calc(100% - 2*var(--_p)) calc(2*var(--_p)),
+            curve to 100% 50% with 100% var(--_r),
+            curve to calc(100% - var(--_p)) calc(100% - var(--_v)) with 100% calc(100% - var(--_r)),
+            curve to calc(100% - var(--_v)) calc(100% - var(--_p)) with calc(100% - 2*var(--_p)) calc(100% - 2*var(--_p)),
+            curve to 50% 100% with calc(100% - var(--_r)) 100%,
+            curve to var(--_v) calc(100% - var(--_p)) with var(--_r) 100%,
+            curve to var(--_p) calc(100% - var(--_v)) with calc(2*var(--_p)) calc(100% - 2*var(--_p)),
+            curve to 0 50% with 0 calc(100% - var(--_r)),
+            curve to var(--_p) var(--_v) with 0 var(--_r),
+            curve to var(--_v) var(--_p) with calc(2*var(--_p)) calc(2*var(--_p)));
+}
+
+button {
+    background-color: var(--corTexto);
+    color: var(--roxo);
+    border: 2px solid var(--roxo);
+    font-size: 1rem;
+    border-radius: 17px;
+    padding: 7px 40px;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: none;
+    outline: none;
+}
+
+.destaqueContainer {
+    display: flex;
+    padding: 2vh 7vh;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2vh;
+    text-shadow: var(--bordaTexto);
+}
+
+.destaques {
+    display: flex;
+    align-items: center;
+}
+
+.destaqueDia {
+    width: 550px;
+    height: 300px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.destaqueDia button {
+    width: 70%;
+}
+
+.destaqueDetalhes {
+    padding: 1vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 85%;
+}
+
+.destaqueDia img {
+    width: 60%;
+    height: 100%;
+}
+
+.containerOutrosDestaques {
+    display: flex;
+    gap: 2vh;
+    flex-direction: column;
+}
+
+.containerDestaqueOutro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vh;
+    height: 12vh;
+    margin-left: 2rem;
+    margin-bottom: 1.5rem;
+    background-color: var(--containerCor);
+    border: 2px solid var(--roxo);
+    border-radius: 50px;
+    background-image: linear-gradient(to right, rgba(162, 89, 182, 0.85), rgba(223, 166, 214, 0.6)), url('../img/haborgue.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: 
+        5px 6px 12px rgba(0, 0, 0, 0.35),
+        inset 0px -3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.containerDestaqueOutro h1 {
+    color: var(--rosaBase);
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.cardapioContainer {
+    width: 100%;
+    padding: 0px 5vh;
+    margin-top: 2vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.cardapioContainer header,
+.sobreNosContainer header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 2vh;
+    text-shadow: var(--bordaTexto);
+}
+
+.cardapioContainerItens {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardapioItem {
+    width: 338px;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    height: 500px;
+    cursor: pointer;
+}
+
+.cardapioItem img {
+    width: 338px;
+    height: 350px;
+}
+
+#nomeItem {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    color: #212121;
+}
+
+.ingredientes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1vh;
+    justify-content: flex-start;
+}
+
+.ingredientes p {
+    color: #212121;
+}
+
+#valorItem {
+    color: #212121;
+}
+
+.secaoHeader {
+    width: 100%;
+    margin-bottom: 2vh;
+    margin-top: 2vh;
+}
+
+.sobreNosContainer {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0px 5vh;
+    margin-top: 10vh;
+    text-shadow: var(--bordaTexto);
+}
+
+.historiaTxt {
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    padding-right: 2vh;
+}
+
+.sobreNosBox {
+    width: 80%;
+    padding: 7vh;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.sobreNosBox h2 {
+    font-size: 35px;
+}
+
+.sobreNos p {
+    font-size: 1.3rem;
+}
+
+.topSection {
+    display: flex;
+}
+
+.sobreNosContainer img {
+    width: 50vh;
+    height: 30vh;
+    border-radius: 30px;
+}
+
+.bottomSection {
+    display: flex;
+    justify-content: space-between;
+}
+
+.compromissosBox {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.compromisso {
+    width: 60vh;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+}
+
+footer {
+    position: relative;
+    height: 45vh;
+}
+
+.footerInfos {
+    display: flex;
+    justify-content: center;
+    gap: 8vw;
+    align-items: flex-start;
+    width: 100%;
+    padding-top: 15vh;
+    position: absolute;
+    bottom: 0;
+}
+
+.colunaFooter {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2vh;
+    text-shadow: var(--bordaTexto);
+}
+
+.colunaFooter h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5vh;
+}
+
+.footerFundo {
+    position: absolute;
+    width: 100%;
+    z-index: -9999;
+}
+
+.colunaFooter p {
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start; 
+    gap: 1vh;
+}
+
+.colunaFooter p i {
+    margin-top: 0.4vh; 
+}
+
+.espacoCima {
+    margin-top: 2.5vh;
+}
+
+.redesIcones {
+    display: flex;
+    gap: 2vh;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.redesIcones i, .colunaFooter p i, .footerCreditos i {
+    color: var(--corTexto);
+}
+
+.logoCol {
+    align-items: center;
+    justify-content: center;
+}
+
+.logoFooter {
+    width: 25vh;
+    transform: rotate(15deg); 
+    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.3));
+}
