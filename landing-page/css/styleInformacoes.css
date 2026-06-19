@@ -1,0 +1,115 @@
+
+header {
+    position: relative;
+    z-index: 99;
+}
+
+header img {
+    width: 100%;
+    height: 25vh;
+    position: absolute;
+    z-index: -1;
+}
+
+.containerInformacoes {
+    background-image: url('../img/background.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    padding-top: 25vh;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.infoProdutoWrapper {
+    width: 80%;
+    max-width: 800px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btnVoltar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    font-size: 2.2rem;
+    text-shadow: var(--bordaTexto);
+    cursor: pointer;
+    z-index: 10;
+}
+
+.btnVoltar img {
+    width: 35px;
+    object-fit: contain;
+}
+
+.produtoDestaque {
+    margin-top: 2vh;
+    margin-bottom: 4vh;
+}
+
+.produtoDestaque img {
+    width: 350px;
+    filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.4));
+}
+
+.produtoDetalhes {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-shadow: var(--bordaTexto);
+    padding-left: 5%; 
+}
+
+.produtoTitulo {
+    font-size: 3rem;
+    margin-bottom: 0.5vh;
+}
+
+.produtoPreco {
+    font-size: 2.2rem;
+    margin-bottom: 4vh;
+}
+
+.ingredientesTitulo {
+    font-size: 1.8rem;
+    margin-bottom: 2.5vh;
+}
+
+.ingredientesLista {
+    display: grid;
+    grid-template-columns: max-content max-content; 
+    gap: 3vh 10vh;
+}
+
+.ingredienteItem {
+    display: flex;
+    align-items: center;
+    gap: 2vh;
+    font-size: 1.6rem;
+}
+
+.ingredienteIcone {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 3px solid var(--roxo);
+    background-color: var(--rosaBase); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 0 2px var(--corTexto); 
+}
+
+.ingredienteIcone img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}

@@ -1,0 +1,126 @@
+.containerResultado {
+    min-height: 100vh;
+    padding-top: 26vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-bottom: 10vh;
+}
+
+.topoResultado {
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    position: absolute;
+    top: 26vh;
+    left: 5%;
+}
+
+.btnVoltarResultados {
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    font-size: 2.2rem;
+    text-shadow: var(--bordaTexto);
+    cursor: pointer;
+    z-index: 10;
+}
+
+.btnVoltarResultados img {
+    width: 35px;
+    object-fit: contain;
+}
+
+.ilustracaoDoug {
+    display: flex;
+    justify-content: center;
+    margin-top: -2vh;
+    z-index: 2;
+}
+
+.ilustracaoDoug img {
+    width: 300px;
+    object-fit: contain;
+}
+
+.barraCategoriasWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2vh;
+    width: 100%;
+    margin-top: -1vh;
+    margin-bottom: 8vh;
+    z-index: 1;
+}
+
+.barraCategorias {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 65%;
+    height: 15vh;
+    border-radius: 20px;
+}
+
+.categoriaItem {
+    position: relative;
+    height: 100%;
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-shadow: var(--bordaTexto);
+}
+
+.categoriaItem img {
+    width: 100px;
+    object-fit: contain;
+    transition: all 0.3s ease-in-out; 
+    transform: translateY(0);
+    border-radius: 50vh;
+}
+
+.categoriaItem p {
+    position: absolute;
+    bottom: 1.5vh;
+    font-size: 1.2rem;
+    font-weight: bold;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: all 0.3s ease-in-out;
+}
+
+.categoriaItem:hover img {
+    transform: translateY(-2vh); 
+}
+
+.categoriaItem:hover p {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.gridResultados {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6vh 4vh;
+    width: 90%;
+    justify-items: center;
+}
+
+.gridResultados .cardapioItem {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+}
+
+.gridResultados .containerCard img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
