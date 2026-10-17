@@ -268,17 +268,8 @@ export async function getAllcategorias() {
             return getJsonFalhaCategorias(); 
         }
     } catch (error) {
-        console.log(error);
-        return getJsonFalhaCategorias(); 
+        return false;
     }
-}
-
-function getJsonFalhaCategorias() {
-    return [
-        { id: 1, nome: "Tradicionais", foto: "./img/haborgue.png" },
-        { id: 2, nome: "Artesanais", foto: "./img/haborgue.png" },
-        { id: 3, nome: "Veganos", foto: "./img/haborgue.png" }
-    ];
 }
 
 export async function getAllHamburguers() {
@@ -290,16 +281,21 @@ export async function getAllHamburguers() {
         if (response.ok) {
             let respostaAPI = await response.json();
             let hamburgueres = [];
-            for (let item of respostaAPI) {
-                hamburgueres.push({
-                    id: item.id,
-                    nome: item.nome,
-                    preco: item.preco,
-                    foto: item.foto,
-                    descricao: item.descricao,
-                    categoria: item.categoria, 
-                    ingredientes: item.ingredientes
-                });
+
+            if (respostaAPI.response) {
+                if (respostaAPI.response.hamburguer) {
+                    for (let item of respostaAPI.response.hamburguer) {
+                        hamburgueres.push({
+                            id: item.id,
+                            nome: item.nome,
+                            preco: parseFloat(item.preco),
+                            foto: item.foto,
+                            descricao: item.descricao,
+                            categoria: item.categoria,
+                            ingredientes: item.ingredientes
+                        });
+                    }
+                }
             }
             return hamburgueres;
         } else {
@@ -307,37 +303,8 @@ export async function getAllHamburguers() {
             return getJsonFalhaHamburgueres(); 
         }
     } catch (error) {
-        console.log(error);
-        return getJsonFalhaHamburgueres(); 
+        return false;
     }
-}
-
-function getJsonFalhaHamburgueres() {
-    return [
-        {
-            id: 1,
-            nome: "nome",
-            preco: 28.50,
-            foto: "./img/haborgue.png",
-            descricao: "descrição",
-            categoria: [{ id: 1, categoria: "Artesanais" }],
-            ingredientes: [
-                { id: 1, foto: "./img/haborgue.png", preco: 3.50 },
-                { id: 2, foto: "./img/haborgue.png", preco: 4.00 }
-            ]
-        },
-        {
-            id: 2,
-            nome: "nome",
-            preco: 22.00,
-            foto: "./img/haborgue.png",
-            descricao: "descricao",
-            categoria: [{ id: 2, categoria: "Tradicionais" }],
-            ingredientes: [
-                { id: 2, foto: "./img/haborgue.png", preco: 4.00 }
-            ]
-        }
-    ];
 }
 
 export async function getHamburguerById(id) {
@@ -348,16 +315,38 @@ export async function getHamburguerById(id) {
 
         if (response.ok) {
             let respostaAPI = await response.json();
-            let hamburguer = {
-                id: respostaAPI.id,
-                nome: respostaAPI.nome,
-                preco: respostaAPI.preco,
-                foto: respostaAPI.foto,
-                descricao: respostaAPI.descricao,
-                categoria: respostaAPI.categoria, 
-                ingredientes: respostaAPI.ingredientes
-            };
-            return hamburguer;
+            console.log(respostaAPI);
+            
+            if (respostaAPI.response) {
+                if (respostaAPI.response.hamburguer) {
+                    if (respostaAPI.response.hamburguer.length > 0) {
+                        let item = respostaAPI.response.hamburguer[0];
+                        
+                        let objRetorno = {
+                            id: item.id,
+                            nome: item.nome,
+                            preco: item.preco,
+                            foto: item.foto,
+                            descricao: item.descricao,
+                            categorias: [],
+                            ingredientes: []
+                        };
+
+                        if (Array.isArray(item.categorias)) {
+                            objRetorno.categorias = item.categorias;
+                        } else if (Array.isArray(item.categoria)) {
+                            objRetorno.categorias = item.categoria;
+                        }
+
+                        if (Array.isArray(item.ingredientes)) {
+                            objRetorno.ingredientes = item.ingredientes;
+                        }
+
+                        return objRetorno;
+                    }
+                }
+            }
+            return false;
         } else {
             console.log(response.status);
             return getJsonFalhaHamburguerUnico(id); 
@@ -366,21 +355,6 @@ export async function getHamburguerById(id) {
         console.log(error);
         return getJsonFalhaHamburguerUnico(id); 
     }
-}
-
-function getJsonFalhaHamburguerUnico(id) {
-    return {
-        id: id || 99,
-        nome: "Nome",
-        preco: 35.90,
-        foto: "./img/haborgue.png",
-        descricao: "descrição",
-        categoria: [{ id: 1, categoria: "Artesanais" }],
-        ingredientes: [
-            { id: 1, foto: "./img/haborgue.png", preco: 3.50 },
-            { id: 3, foto: "./img/haborgue.png", preco: 2.00 }
-        ]
-    };
 }
 
 export async function insertHamburguer(dadosHamburguer) {
@@ -398,7 +372,6 @@ export async function insertHamburguer(dadosHamburguer) {
         if (response.ok) {
             return await response.json();
         } else {
-            console.warn(response.status);
             return false;
         }
     } catch (error) {
@@ -412,39 +385,31 @@ export async function getAllIngredientes() {
 
     try {
         let response = await fetch(url);
-
         if (response.ok) {
             let respostaAPI = await response.json();
-            
+            console.log(respostaAPI);
             let ingredientes = [];
-            for (let item of respostaAPI) {
-                ingredientes.push({
-                    id: item.id,
-                    nome: item.nome,
-                    preco: item.preco,
-                    foto: item.foto
-                });
+
+            if (respostaAPI.response) {
+                if (respostaAPI.response.ingrediente) {
+                    for (let item of respostaAPI.response.ingrediente) {
+                        ingredientes.push({
+                            id: item.id,
+                            nome: item.nome,
+                            preco: parseFloat(item.preco),
+                            foto: item.foto
+                        });
+                    }
+                }
             }
             return ingredientes;
         } else {
-            console.warn(response.status);
-            return getJsonFalhaIngredientes();
+            return false;
         }
     } catch (error) {
         console.log(error);
         return getJsonFalhaIngredientes();
     }
-}
-
-function getJsonFalhaIngredientes() {
-    return [
-        { id: 1, nome: 'Tomate', preco: 2.50, foto: './img/haborgue.png' },
-        { id: 2, nome: 'Alface', preco: 1.50, foto: './img/haborgue.png' },
-        { id: 3, nome: 'Bacon', preco: 5.00, foto: './img/haborgue.png' },
-        { id: 4, nome: 'Queijo', preco: 4.00, foto: './img/haborgue.png' },
-        { id: 5, nome: 'Cebola', preco: 2.00, foto: './img/haborgue.png' },
-        { id: 6, nome: 'Picles', preco: 3.00, foto: './img/haborgue.png' }
-    ];
 }
 
 export async function updateHamburguer(hamburguer) {
@@ -460,9 +425,8 @@ export async function updateHamburguer(hamburguer) {
         });
 
         if (response.ok) {
-            return await response.json(); 
+            return await response.json();
         } else {
-            console.warn(response.status);
             return false;
         }
     } catch (error) {
@@ -482,7 +446,6 @@ export async function deleteHamburguer(id) {
         if (response.ok) {
             return true;
         } else {
-            console.warn(response.status);
             return false;
         }
     } catch (error) {

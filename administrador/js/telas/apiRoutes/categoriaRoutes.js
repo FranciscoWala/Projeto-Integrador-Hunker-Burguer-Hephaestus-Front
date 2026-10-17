@@ -137,21 +137,12 @@ export async function getAllCategorias() {
             }
             return categorias;
         } else {
-            console.warn(response.status);
-            return getJsonFalhaCategorias();
+            return false;
         }
     } catch (error) {
         console.log(error);
         return getJsonFalhaCategorias();
     }
-}
-
-function getJsonFalhaCategorias() {
-    return [
-        { id: 1, nome: "Hambúrguer", foto: "./img/haborgue.png" },
-        { id: 2, nome: "Bebida", foto: "./img/haborgue.png" },
-        { id: 3, nome: "Sobremesa", foto: "./img/haborgue.png" }
-    ];
 }
 
 export async function getCategoriaById(id) {
@@ -161,27 +152,23 @@ export async function getCategoriaById(id) {
         let response = await fetch(url);
         if (response.ok) {
             let respostaAPI = await response.json();
-            return {
-                id: respostaAPI.id,
-                nome: respostaAPI.nome,
-                foto: respostaAPI.foto
-            };
+
+            if (respostaAPI.response && respostaAPI.response.categoria && respostaAPI.response.categoria.length > 0) {
+                let item = respostaAPI.response.categoria[0];
+                return {
+                    id: item.id,
+                    nome: item.categoria,
+                    foto: item.foto
+                };
+            }
+            return false;
         } else {
-            console.warn(response.status);
-            return getJsonFalhaCategoriaUnica(id);
+            return false;
         }
     } catch (error) {
         console.log(error);
         return getJsonFalhaCategoriaUnica(id);
     }
-}
-
-function getJsonFalhaCategoriaUnica(id) {
-    return {
-        id: id,
-        nome: "Categoria Teste",
-        foto: "./img/haborgue.png"
-    };
 }
 
 export async function insertCategoria(categoria) {

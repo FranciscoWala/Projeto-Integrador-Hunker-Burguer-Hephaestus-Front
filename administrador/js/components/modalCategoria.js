@@ -1,8 +1,9 @@
 import { criarEl } from '../utils/dom.js';
 import { insertCategoria, updateCategoria, deleteCategoria } from '../telas/apiRoutes/categoriaRoutes.js';
 import { uploadParaCloudinary } from '../utils/cloudnary.js';
+import { mostrar } from '../utils/interface.js';
 
-export async function criarModalCategoria() {
+export async function criarModalCategoria(onUpdateCallback) {
     const modal = criarEl('div', 'janela container');
     modal.id = 'modalCategoria';
     modal.style.display = 'none';
@@ -91,10 +92,14 @@ export async function criarModalCategoria() {
                 let sucesso = await deleteCategoria(idAtual);
 
                 if (sucesso === true) {
-                    alert("Excluído com sucesso!");
+                    mostrar.mensagem("Excluído com sucesso!", "fa-solid fa-check");
                     modal.style.display = 'none';
+
+                    if (onUpdateCallback) {
+                        await onUpdateCallback();
+                    }
                 } else {
-                    alert("Erro ao excluir.");
+                    mostrar.mensagem("Erro ao excluir a categoria.", "fa-solid fa-xmark", "erro");
                 }
 
                 btnExcluir.textContent = "Excluir";
@@ -107,13 +112,13 @@ export async function criarModalCategoria() {
         const nomeDigitado = grupoNome.querySelector('input').value.trim();
 
         if (nomeDigitado === "") {
-            alert("nome categoria não pode ser vazio");
+            mostrar.mensagem("O nome da categoria não pode ser vazio.", "fa-solid fa-triangle-exclamation", "erro");
             return;
         }
 
         if (idAtual === 0) {
             if (arquivoSelecionado === null) {
-                alert("foto não pode ser vazio");
+                mostrar.mensagem("A foto não pode ser vazia.", "fa-regular fa-image", "erro");
                 return;
             }
         }
@@ -127,7 +132,7 @@ export async function criarModalCategoria() {
             if (urlCloudinary) {
                 urlDaFoto = urlCloudinary;
             } else {
-                alert("falha ao upar imagem");
+                mostrar.mensagem("Falha ao fazer upload da imagem.", "fa-solid fa-cloud-arrow-up", "erro");
             }
         }
 
@@ -151,10 +156,14 @@ export async function criarModalCategoria() {
         }
 
         if (sucesso) {
-            alert('salvo com sucesso');
+            mostrar.mensagem("Salvo com sucesso!", "fa-solid fa-check");
             modal.style.display = 'none';
+
+            if (onUpdateCallback) {
+                await onUpdateCallback();
+            }
         } else {
-            alert('erro ao salvar no banco de dados');
+            mostrar.mensagem("Erro ao salvar no banco de dados.", "fa-solid fa-database", "erro");
         }
 
         btnSalvar.textContent = "Salvar";
